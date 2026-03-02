@@ -1,17 +1,40 @@
 "use client";
 
-import type { ReactNode } from "react";
-import { UserProvider } from "@/context/user";
-import { CartProvider } from "@/context/cart";
+import {
+  createContext,
+  useContext,
+  useState,
+  type ReactNode,
+  useEffect,
+} from "react";
+import type { AppContextType, AppState } from "@/types";
 
-/**
- * Composed provider that wraps the entire application.
- * Add new providers here — order matters only if providers depend on each other.
- */
+const AppContext = createContext<AppContextType | undefined>(undefined);
+
 export function AppProvider({ children }: { children: ReactNode }) {
+  const [state, setState] = useState<AppState>({
+    message: "Hello from global context!",
+  });
+
+  const setMessage = (message: string) => {
+    setState({ message });
+  };
+
+  useEffect(() => {
+    console.log("[AppContext] state changed:", state);
+  }, [state]);
+
   return (
-    <UserProvider>
-      <CartProvider>{children}</CartProvider>
-    </UserProvider>
+    <AppContext.Provider value={{ state, setMessage }}>
+      {children}
+    </AppContext.Provider>
   );
+}
+
+export function useApp(): AppContextType {
+  const context = useContext(AppContext);
+  if (!context) {
+    throw new Error("useApp must be used within AppProvider");
+  }
+  return context;
 }
