@@ -1,23 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Jost } from "next/font/google";
 import { AppProvider } from "@/context";
 import { Header } from "@/components/Layout/Header/Header";
 import { Footer } from "@/components/Layout/Footer/Footer";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const jost = Jost({
+  variable: "--font-jost",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Next.js Context Starter",
-  description: "Minimal global context boilerplate",
+  title: "Test app",
+  description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
 };
 
 export default function RootLayout({
@@ -27,9 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
-      >
+      <body className={`${jost.variable} font-sans antialiased`}>
         <AppProvider>
           <div className="flex min-h-screen flex-col">
             <Header />

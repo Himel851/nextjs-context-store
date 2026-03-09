@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { CloseIcon, MenuBarIcon, UserIcon } from "@/components/icons/UserIcon";
@@ -19,14 +18,9 @@ export function Header() {
       <header className="sticky top-0 z-40 bg-primary text-white">
         <div className="flex items-center justify-between px-4 py-3 md:py-2">
           <Link href="/" className="flex items-center gap-2">
-            <Image
-              src="/images/logo.png"
-              alt="SkyShip"
-              width={140}
-              height={40}
-              priority
-              className="h-8 w-auto md:h-10"
-            />
+            <span className="text-lg font-bold tracking-tight">
+              Context<span className="font-light">Template</span>
+            </span>
           </Link>
 
           {/* Desktop navigation */}
@@ -94,13 +88,9 @@ export function Header() {
             className="flex items-center gap-2"
             onClick={() => setMenuOpen(false)}
           >
-            <Image
-              src="/images/logo.png"
-              alt="SkyShip"
-              width={120}
-              height={32}
-              className="h-8 w-auto"
-            />
+            <span className="text-base font-bold tracking-tight text-primary">
+              Context<span className="font-light">Template</span>
+            </span>
           </Link>
 
           <button
